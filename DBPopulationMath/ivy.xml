@@ -1,0 +1,17 @@
+<ivy-module version="2.0">
+    <info organisation="com.dstevens" module="${project.name}" revision="${version.major}.${version.minor}.${version.revision}"/>
+    <configurations>
+      <conf name="default" description="binary jars"/>
+      <conf name="sources" visibility="public"/>
+      <conf name="javadoc" visibility="public"/>
+      <conf name="testDefault" visibility="private"/>
+      <conf name="testSources" visibility="private"/>
+      <conf name="testJavadoc" visibility="private"/>
+    </configurations>
+    <publications>
+      <artifact name="${project.name}" conf="default"/>
+      <artifact name="${project.name}-sources" type="source" ext="jar" conf="sources"/>
+    </publications>
+    <dependencies>
+    </dependencies>
+</ivy-module>
