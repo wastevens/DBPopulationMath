@@ -75,6 +75,27 @@ public class RealmSociety {
         deathsSinceLastCensus = map();
     }
     
+    public void printLongCensus() {
+        System.out.println("---");
+        System.out.println("Census for RY " + realmYear);
+        System.out.println("Exalted:\t\t" + dynasts.size());
+        System.out.println("By age");
+        System.out.println("\tYouths:\t\t" + dynasts.stream().filter(p -> p.getAge() == Age.YOUTH).count());
+        System.out.println("\tActive:\t\t" + dynasts.stream().filter(p -> p.getAge() == Age.ACTIVE).count());
+        System.out.println("\tRetired:\t" + dynasts.stream().filter(p -> p.getAge() == Age.RETIRED).count());
+        System.out.println("By career");
+        System.out.println("\tBureaucrats:\t" + dynasts.stream().filter(p -> p.getCareer() == Career.BUREAUCRAT).count());
+        System.out.println("\tSoldiers:\t" + dynasts.stream().filter(p -> p.getCareer() == Career.SOLDIER).count());
+        System.out.println("\tSorcerer\t" + dynasts.stream().filter(p -> p.getCareer() == Career.SORCERER).count());
+        System.out.println("\tWordly Monks:\t" + dynasts.stream().filter(p -> p.getCareer() == Career.MONK && !p.isCelebate()).count());
+        System.out.println("\tImmaculate:\t" + dynasts.stream().filter(p -> p.getCareer() == Career.MONK && p.isCelebate()).count());
+        System.out.println("Couples:\t\t" + marriedCouples.size());
+        System.out.println("UnExalted:\t\t" + unExalted.size());
+        System.out.println("\tNewborns:\t" + unExalted.stream().filter(p -> p.getAge() == Age.FETUS).count());
+        System.out.println("\tInfants:\t" + unExalted.stream().filter(p -> p.getAge() == Age.INFANT).count());
+        System.out.println("\tChildren:\t" + unExalted.stream().filter(p -> p.getAge() == Age.CHILD).count());
+    }
+    
     public void printAbbreviatedCensus() {
         System.out.println("---");
         System.out.println("Census for RY " + realmYear);

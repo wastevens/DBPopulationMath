@@ -7,6 +7,7 @@ public class ActuarialTable {
     private static final double YOUTH_MORTALITY = 0.005;
     private static final double ACTIVE_MORTALITY = 0.0002;
     private static final double RETIRED_MORTALITY = 0.00005;
+    public static boolean logYouth = false;
 
     public boolean kill(Person p) {
         if(Dragonblooded.class.isAssignableFrom(p.getClass())) {
@@ -47,14 +48,20 @@ public class ActuarialTable {
         switch (dynast.getCareer()) {
             case BUREAUCRAT:
                 trainingMortality = 0;
+                break;
             case MONK:
                 trainingMortality = 0.001;
+                break;
             case SORCERER:
                 trainingMortality = 0.005;
+                break;
             case SOLDIER:
                 trainingMortality = 0.01;
+                break;
         }
-        return check(YOUTH_MORTALITY + trainingMortality);
+        double probability = YOUTH_MORTALITY + trainingMortality;
+        boolean check = check(probability);
+        return check;
     }
     
     private boolean activeMortality(Dragonblooded dynast) {
@@ -62,12 +69,16 @@ public class ActuarialTable {
         switch (dynast.getCareer()) {
             case BUREAUCRAT:
                 careerMortality = 0;
+                break;
             case MONK:
                 careerMortality = 0.001;
+                break;
             case SORCERER:
                 careerMortality = 0.005;
+                break;
             case SOLDIER:
                 careerMortality = 0.01;
+                break;
         }
         return check(ACTIVE_MORTALITY + careerMortality);
     }

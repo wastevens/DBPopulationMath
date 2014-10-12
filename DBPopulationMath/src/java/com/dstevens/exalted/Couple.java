@@ -29,7 +29,14 @@ public class Couple {
     }
 
     private boolean itsBeenLongEnough() {
-        return yearsBetweenChildren % (Math.min(6 + (numberOfChildren*2), 12)) == 0;
+        switch(numberOfChildren) {
+        case 0:
+            return yearsBetweenChildren % 5 == 0;
+        case 1:
+            return yearsBetweenChildren % 10 == 0;
+        default:
+            return yearsBetweenChildren % 25 == 0;
+        }
     }
     
     public Person haveChild() {
